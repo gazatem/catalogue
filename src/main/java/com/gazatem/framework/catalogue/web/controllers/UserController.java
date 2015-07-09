@@ -11,11 +11,15 @@ import org.springframework.stereotype.Controller;
 import com.gazatem.framework.catalogue.entities.User;
 import com.gazatem.framework.catalogue.services.UserService;
 import com.gazatem.framework.catalogue.web.config.SecurityUser;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.MediaType;
+import org.springframework.web.servlet.ModelAndView;
 
-/**
- * @author Siva
- *
- */
+import java.awt.*;
+
 @Controller
 public class UserController 
 {
@@ -37,6 +41,13 @@ public class UserController
 	    }
 
 	    return null;
+	}
+
+	@RequestMapping(value="/hello", method= RequestMethod.GET)
+	public String hello(ModelMap model)
+	{
+		model.addAttribute("name", "JTwig");
+		return "articles";
 	}
 }
 

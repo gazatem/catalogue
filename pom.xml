@@ -193,6 +193,14 @@
 			<version>1.2</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<!-- Twig: Template Engine -->
+		<dependency>
+			<groupId>com.lyncode</groupId>
+			<artifactId>jtwig-spring</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>

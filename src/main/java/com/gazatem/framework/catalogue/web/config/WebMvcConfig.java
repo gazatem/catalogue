@@ -5,6 +5,9 @@ package com.gazatem.framework.catalogue.web.config;
 
 import java.util.Properties;
 
+import com.lyncode.jtwig.mvc.JtwigViewResolver;
+import com.lyncode.jtwig.services.api.assets.AssetResolver;
+import com.lyncode.jtwig.services.impl.assets.BaseAssetResolver;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -36,16 +39,23 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter
 		registry.addViewController("login/form").setViewName("login");		
 		registry.addViewController("welcome").setViewName("welcome");
 		registry.addViewController("admin").setViewName("admin");
-		registry.addViewController("articles").setViewName("articles");
 	}
 
 	@Bean
 	public ViewResolver resolver()
 	{
-		InternalResourceViewResolver url = new InternalResourceViewResolver();
-		url.setPrefix("/WEB-INF/jsp/");
-		url.setSuffix(".jsp");
-		return url;
+		JtwigViewResolver jtwigViewResolver = new JtwigViewResolver();
+		jtwigViewResolver.setPrefix("/WEB-INF/views/");
+		jtwigViewResolver.setSuffix(".twig.html");
+		jtwigViewResolver.setCached(false);
+		return jtwigViewResolver;
+	}
+
+	@Bean
+	public AssetResolver assetResolver () {
+		BaseAssetResolver assetResolver = new BaseAssetResolver();
+		assetResolver.setPrefix("/resources/");
+		return assetResolver;
 	}
 
 	@Override
